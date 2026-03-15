@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "Fournisseur d'accès au dossier personnel local"
+    "message": "VFS-Toolkit: Fournisseur d'accès au dossier personnel local"
   },
   "extensionDescription": {
     "message": "Un module complémentaire fournisseur pour WebExtensions utilisant la boîte à outils VFS, qui expose le dossier personnel local via la messagerie native."

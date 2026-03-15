@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "Anbieter für lokalen Home-Ordner-Zugriff"
+    "message": "VFS-Toolkit: Anbieter für lokalen Home-Ordner-Zugriff"
   },
   "extensionDescription": {
     "message": "Ein Anbieter-Add-on für WebExtensions, das das VFS-Toolkit verwendet und den lokalen Home-Ordner über Native Messaging zugänglich macht."

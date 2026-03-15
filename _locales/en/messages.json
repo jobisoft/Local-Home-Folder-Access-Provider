@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "Local Home Folder Access Provider"
+    "message": "VFS-Toolkit: Local Home Folder Access Provider"
   },
   "extensionDescription": {
     "message": "A provider add-on for WebExtensions using the VFS toolkit, that exposes the local home folder via native messaging."

@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "Provider di accesso alla cartella home locale"
+    "message": "VFS-Toolkit: Provider di accesso alla cartella home locale"
   },
   "extensionDescription": {
     "message": "Un componente aggiuntivo provider per WebExtensions che utilizza il toolkit VFS per esporre la cartella home locale tramite messaggistica nativa."
