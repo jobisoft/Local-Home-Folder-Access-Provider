@@ -108,15 +108,7 @@
     "message": "Natív üzenetküldés"
   },
   "optionsIntroP1": {
-    "message": "Ez a kiegészítő $TOOLKIT$-et használó WebExtensions számára biztosít hozzáférést a helyi saját mappájához. A hozzáférés megadása után ezek a WebExtensions olvashatják és írhatják a saját mappájában lévő fájlokat. Mivel a modern WebExtensions nem tud közvetlenül hozzáférni a helyi fájlrendszerhez, a Mozilla $NATIVEMSG$ protokollján keresztül kommunikál egy, a számítógépén futó kis segítő alkalmazással.",
-    "placeholders": {
-      "NATIVEMSG": {
-        "content": "<strong>$2</strong>"
-      },
-      "TOOLKIT": {
-        "content": "<a href=\"$3\"><strong>VFS Toolkit</strong></a>"
-      }
-    }
+    "message": "Ez a kiegészítő VFS Toolkit-et használó WebExtensions számára biztosít hozzáférést a helyi saját mappájához. A hozzáférés megadása után ezek a WebExtensions olvashatják és írhatják a saját mappájában lévő fájlokat. Mivel a modern WebExtensions nem tud közvetlenül hozzáférni a helyi fájlrendszerhez, a Mozilla Natív üzenetküldés protokollján keresztül kommunikál egy, a számítógépén futó kis segítő alkalmazással."
   },
   "optionsArchitectureP": {
     "message": "Az architektúra két részből áll:"

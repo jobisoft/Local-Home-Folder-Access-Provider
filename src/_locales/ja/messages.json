@@ -108,15 +108,7 @@
     "message": "ネイティブメッセージング"
   },
   "optionsIntroP1": {
-    "message": "このアドオンは、$TOOLKIT$を使用するすべてのWebExtensionsにローカルホームフォルダーへのファイルシステムアクセスを提供します。アクセスを許可すると、これらのWebExtensionsはホームフォルダー内のファイルを読み書きできます。現代のWebExtensionsはローカルファイルシステムに直接アクセスできないため、Mozillaの$NATIVEMSG$を使用してコンピューター上で動作する小さなヘルパーアプリケーションと通信します。",
-    "placeholders": {
-      "NATIVEMSG": {
-        "content": "<strong>$2</strong>"
-      },
-      "TOOLKIT": {
-        "content": "<a href=\"$3\"><strong>VFS Toolkit</strong></a>"
-      }
-    }
+    "message": "このアドオンは、VFS Toolkitを使用するすべてのWebExtensionsにローカルホームフォルダーへのファイルシステムアクセスを提供します。アクセスを許可すると、これらのWebExtensionsはホームフォルダー内のファイルを読み書きできます。現代のWebExtensionsはローカルファイルシステムに直接アクセスできないため、Mozillaのネイティブメッセージングを使用してコンピューター上で動作する小さなヘルパーアプリケーションと通信します。"
   },
   "optionsArchitectureP": {
     "message": "アーキテクチャは2つの部分で構成されています："

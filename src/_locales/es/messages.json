@@ -108,15 +108,7 @@
     "message": "Mensajería nativa"
   },
   "optionsIntroP1": {
-    "message": "Este complemento proporciona acceso al sistema de archivos de su carpeta personal local a cualquier WebExtension que use el $TOOLKIT$. Tras conceder el acceso, estas WebExtensions pueden leer y escribir archivos en su carpeta personal. Dado que las WebExtensions modernas no pueden acceder directamente al sistema de archivos local, utiliza el $NATIVEMSG$ de Mozilla para comunicarse con una pequeña aplicación auxiliar en su equipo.",
-    "placeholders": {
-      "NATIVEMSG": {
-        "content": "<strong>$2</strong>"
-      },
-      "TOOLKIT": {
-        "content": "<a href=\"$3\"><strong>VFS Toolkit</strong></a>"
-      }
-    }
+    "message": "Este complemento proporciona acceso al sistema de archivos de su carpeta personal local a cualquier WebExtension que use el VFS Toolkit. Tras conceder el acceso, estas WebExtensions pueden leer y escribir archivos en su carpeta personal. Dado que las WebExtensions modernas no pueden acceder directamente al sistema de archivos local, utiliza el Mensajería nativa de Mozilla para comunicarse con una pequeña aplicación auxiliar en su equipo."
   },
   "optionsArchitectureP": {
     "message": "La arquitectura tiene dos partes:"

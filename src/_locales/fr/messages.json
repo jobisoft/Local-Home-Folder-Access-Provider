@@ -108,15 +108,7 @@
     "message": "Messagerie native"
   },
   "optionsIntroP1": {
-    "message": "Ce module complémentaire fournit un accès au système de fichiers de votre dossier personnel local à toute WebExtension utilisant le $TOOLKIT$. Après avoir accordé l'accès, ces WebExtensions peuvent lire et écrire des fichiers dans votre dossier personnel. Les WebExtensions modernes ne pouvant pas accéder directement au système de fichiers local, il utilise le $NATIVEMSG$ de Mozilla pour communiquer avec une petite application auxiliaire sur votre ordinateur.",
-    "placeholders": {
-      "NATIVEMSG": {
-        "content": "<strong>$2</strong>"
-      },
-      "TOOLKIT": {
-        "content": "<a href=\"$3\"><strong>VFS Toolkit</strong></a>"
-      }
-    }
+    "message": "Ce module complémentaire fournit un accès au système de fichiers de votre dossier personnel local à toute WebExtension utilisant le VFS Toolkit. Après avoir accordé l'accès, ces WebExtensions peuvent lire et écrire des fichiers dans votre dossier personnel. Les WebExtensions modernes ne pouvant pas accéder directement au système de fichiers local, il utilise le Messagerie native de Mozilla pour communiquer avec une petite application auxiliaire sur votre ordinateur."
   },
   "optionsArchitectureP": {
     "message": "L'architecture comporte deux parties :"

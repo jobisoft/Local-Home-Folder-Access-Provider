@@ -108,15 +108,7 @@
     "message": "Messaggistica nativa"
   },
   "optionsIntroP1": {
-    "message": "Questo componente aggiuntivo fornisce accesso al file system della cartella home locale a qualsiasi WebExtension che utilizza il $TOOLKIT$. Dopo aver concesso l'accesso, queste WebExtensions possono leggere e scrivere file nella cartella home. Poiché le moderne WebExtensions non possono accedere direttamente al file system locale, utilizza il $NATIVEMSG$ di Mozilla per comunicare con una piccola applicazione helper in esecuzione sul computer.",
-    "placeholders": {
-      "NATIVEMSG": {
-        "content": "<strong>$2</strong>"
-      },
-      "TOOLKIT": {
-        "content": "<a href=\"$3\"><strong>VFS Toolkit</strong></a>"
-      }
-    }
+    "message": "Questo componente aggiuntivo fornisce accesso al file system della cartella home locale a qualsiasi WebExtension che utilizza il VFS Toolkit. Dopo aver concesso l'accesso, queste WebExtensions possono leggere e scrivere file nella cartella home. Poiché le moderne WebExtensions non possono accedere direttamente al file system locale, utilizza il Messaggistica nativa di Mozilla per comunicare con una piccola applicazione helper in esecuzione sul computer."
   },
   "optionsArchitectureP": {
     "message": "L'architettura è composta da due parti:"

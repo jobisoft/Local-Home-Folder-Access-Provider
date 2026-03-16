@@ -108,15 +108,7 @@
     "message": "Mensagem nativa"
   },
   "optionsIntroP1": {
-    "message": "Este complemento fornece acesso ao sistema de arquivos da sua pasta pessoal local a qualquer WebExtension que use o $TOOLKIT$. Após conceder o acesso, essas WebExtensions podem ler e escrever arquivos na sua pasta pessoal. Como as WebExtensions modernas não podem acessar diretamente o sistema de arquivos local, ele usa o $NATIVEMSG$ da Mozilla para se comunicar com um pequeno aplicativo auxiliar em execução no seu computador.",
-    "placeholders": {
-      "NATIVEMSG": {
-        "content": "<strong>$2</strong>"
-      },
-      "TOOLKIT": {
-        "content": "<a href=\"$3\"><strong>VFS Toolkit</strong></a>"
-      }
-    }
+    "message": "Este complemento fornece acesso ao sistema de arquivos da sua pasta pessoal local a qualquer WebExtension que use o VFS Toolkit. Após conceder o acesso, essas WebExtensions podem ler e escrever arquivos na sua pasta pessoal. Como as WebExtensions modernas não podem acessar diretamente o sistema de arquivos local, ele usa o Mensagem nativa da Mozilla para se comunicar com um pequeno aplicativo auxiliar em execução no seu computador."
   },
   "optionsArchitectureP": {
     "message": "A arquitetura tem duas partes:"

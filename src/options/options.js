@@ -2,14 +2,6 @@ import { localizeDocument } from '../vendor/i18n.mjs';
 
 localizeDocument();
 
-const VFS_TOOLKIT_LINK = "https://github.com/thunderbird/webext-support/tree/master/modules/vfs-toolkit";
-
-// Set P1 via innerHTML to preserve the <strong> substitutions from the locale
-document.getElementById('intro-p1').innerHTML = browser.i18n.getMessage('optionsIntroP1', [
-  browser.i18n.getMessage('termVFS'),
-  browser.i18n.getMessage('termNativeMessaging'),
-  VFS_TOOLKIT_LINK,
-]);
 
 const CONNECTIONS_KEY = 'vfs-toolkit-connections';
 const NATIVE_APP = 'expose_home_folder_host';

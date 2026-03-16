@@ -108,15 +108,7 @@
     "message": "Native Messaging"
   },
   "optionsIntroP1": {
-    "message": "This add-on provides filesystem access to your local home folder to any WebExtension using the $TOOLKIT$. After granting access, these WebExtensions can read/write files in your home folder. Because modern WebExtensions cannot directly access the local file system, it uses Mozilla's $NATIVEMSG$ to communicate with a small helper application running on your computer.",
-    "placeholders": {
-      "NATIVEMSG": {
-        "content": "<strong>$2</strong>"
-      },
-      "TOOLKIT": {
-        "content": "<a href=\"$3\"><strong>VFS Toolkit</strong></a>"
-      }
-    }
+    "message": "This add-on provides filesystem access to your local home folder to any WebExtension using the VFS Toolkit. After granting access, these WebExtensions can read/write files in your home folder. Because modern WebExtensions cannot directly access the local file system, it uses Mozilla\u2019s Native Messaging to communicate with a small helper application running on your computer."
   },
   "optionsArchitectureP": {
     "message": "The architecture has two parts:"

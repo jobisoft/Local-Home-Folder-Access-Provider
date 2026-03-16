@@ -108,15 +108,7 @@
     "message": "Nativní zasílání zpráv"
   },
   "optionsIntroP1": {
-    "message": "Tento doplněk poskytuje přístup k souborovému systému vaší lokální domovské složky pro všechny WebExtensions využívající $TOOLKIT$. Po udělení přístupu mohou tyto WebExtensions číst a zapisovat soubory ve vaší domovské složce. Protože moderní WebExtensions nemohou přímo přistupovat k lokálnímu souborovému systému, komunikuje s malou pomocnou aplikací na vašem počítači prostřednictvím $NATIVEMSG$ od Mozilly.",
-    "placeholders": {
-      "NATIVEMSG": {
-        "content": "<strong>$2</strong>"
-      },
-      "TOOLKIT": {
-        "content": "<a href=\"$3\"><strong>VFS Toolkit</strong></a>"
-      }
-    }
+    "message": "Tento doplněk poskytuje přístup k souborovému systému vaší lokální domovské složky pro všechny WebExtensions využívající VFS Toolkit. Po udělení přístupu mohou tyto WebExtensions číst a zapisovat soubory ve vaší domovské složce. Protože moderní WebExtensions nemohou přímo přistupovat k lokálnímu souborovému systému, komunikuje s malou pomocnou aplikací na vašem počítači prostřednictvím Nativní zasílání zpráv od Mozilly."
   },
   "optionsArchitectureP": {
     "message": "Architektura má dvě části:"
