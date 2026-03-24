@@ -185,8 +185,9 @@ async function main() {
 
   fs.writeFileSync("src/VENDOR.md", `# Vendored Files\n\nThis file lists files that were not created by this project and are maintained upstream elsewhere.\n\n${vendorSections.join("\n\n")}\n`);
 
-  console.log("Creating extension file (dist/vfs-provider-home-folder-access.xpi) ...");
-  zip("src", "dist/vfs-provider-home-folder-access.xpi");
+  const xpiName = `vfs-provider-home-folder-access_${version.replace(/\./g, "_")}.xpi`;
+  console.log(`Creating extension file (dist/${xpiName}) ...`);
+  zip("src", `dist/${xpiName}`);
 
   console.log("Build finished. Output is in the 'dist' folder.");
   https.globalAgent.destroy();

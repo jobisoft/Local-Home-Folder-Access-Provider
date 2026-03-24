@@ -3,8 +3,6 @@ import { localizeDocument } from '../vendor/i18n.mjs';
 
 localizeDocument();
 
-const CONNECTIONS_KEY = 'vfs-toolkit-connections';
-
 const params = new URLSearchParams(location.search);
 const addonId = params.get('addonId');
 const addonName = params.get('addonName');
@@ -58,14 +56,7 @@ if (alreadyConnected) {
     const storageId = crypto.randomUUID();
     const providerName = browser.i18n.getMessage('providerName');
 
-    await vfs.reportNewConnection(addonId, storageId, providerName, capabilities);
-
-    // Also store addonName so the options page can display it
-    const rv2 = await browser.storage.local.get({ [CONNECTIONS_KEY]: [] });
-    const list = rv2[CONNECTIONS_KEY];
-    const idx = list.findIndex(c => c.addonId === addonId && c.storageId === storageId);
-    if (idx >= 0 && addonName) list[idx].addonName = addonName;
-    await browser.storage.local.set({ [CONNECTIONS_KEY]: list });
+    await vfs.reportNewConnection(addonId, addonName, storageId, providerName, capabilities);
 
     window.close();
   });
