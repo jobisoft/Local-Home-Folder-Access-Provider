@@ -257,7 +257,6 @@ async function revokeAccess(addonId, storageId) {
   render();
 }
 
-
 // ── OS-specific section visibility ─────────────────────────────────────────────
 
 async function applyOsSections() {

@@ -3,6 +3,8 @@ import { localizeDocument } from '../vendor/i18n.mjs';
 
 localizeDocument();
 
+const CONNECTIONS_KEY = 'vfs-toolkit-connections';
+
 const params = new URLSearchParams(location.search);
 const addonId = params.get('addonId');
 const addonName = params.get('addonName');
