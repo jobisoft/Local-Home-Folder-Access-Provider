@@ -10,4 +10,4 @@ This file lists files that were not created by this project and are maintained u
 ## vfs-provider.mjs
 
 - **File** : `vendor/vfs-provider.mjs`
-- **Upstream** : https://github.com/thunderbird/webext-support/raw/b001ee8c1803bef2413bdc5a912301835b2c1373/modules/vfs-toolkit/vfs-provider/vfs-provider.mjs
+- **Upstream** : https://github.com/thunderbird/webext-support/raw/0eb1a48639a5f74084852165009d5869ff8512fd/modules/vfs-toolkit/vfs-provider/vfs-provider.mjs
