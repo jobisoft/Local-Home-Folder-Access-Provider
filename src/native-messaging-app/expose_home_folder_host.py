@@ -31,10 +31,19 @@ import os
 import shutil
 import mimetypes
 import base64
+import stat
 
 # ── Configuration ──────────────────────────────────────────────────────────────
 
 ROOT = os.path.expanduser('~')  # VFS "/" maps to the user's home directory
+
+# Legacy Windows compat junctions ("My Documents", "Meine Dokumente", etc.) set
+# all three flags AND have a deny-list ACL that blocks enumeration.
+WIN_LEGACY_JUNCTION_MASK = (
+    stat.FILE_ATTRIBUTE_HIDDEN
+    | stat.FILE_ATTRIBUTE_SYSTEM
+    | stat.FILE_ATTRIBUTE_REPARSE_POINT
+)
 
 # Maximum bytes of raw file data per message.  At 4/3 base64 expansion this
 # keeps every JSON message safely under Mozilla's 1 MB native-messaging limit.
@@ -83,8 +92,6 @@ def cmd_list(args):
 
     entries = []
     for name in os.listdir(real):
-        if not show_hidden and name.startswith('.'):
-            continue
         full = os.path.join(real, name)
         prefix = path.rstrip('/')
         entry_path = f'{prefix}/{name}'
@@ -92,6 +99,19 @@ def cmd_list(args):
             st = os.stat(full)
         except OSError:
             continue
+
+        attrs = getattr(st, 'st_file_attributes', None)  # None on non-Windows
+
+        if attrs is not None and (attrs & WIN_LEGACY_JUNCTION_MASK) == WIN_LEGACY_JUNCTION_MASK:
+            continue
+
+        if attrs is not None:
+            is_hidden = bool(attrs & stat.FILE_ATTRIBUTE_HIDDEN)   # Windows
+        else:
+            is_hidden = name.startswith('.')                       # Linux/macOS
+        if is_hidden and not show_hidden:
+            continue
+
         if os.path.isdir(full):
             entries.append({'name': name, 'path': entry_path, 'kind': 'directory'})
         else:
