@@ -96,6 +96,22 @@
       color: #991b1b;
     }
 
+    .banner-action-btn {
+      padding: 6px 14px;
+      background: #fff;
+      border: 1px solid #166534;
+      color: #166534;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .banner-action-btn:hover {
+      background: #f0fdf4;
+    }
+
     .spinner {
       width: 18px;
       height: 18px;
@@ -364,6 +380,10 @@
         <strong id="banner-title" data-i18n-content="bannerChecking"></strong>
         <span id="banner-detail"></span>
       </div>
+      <button id="banner-uninstall-btn" type="button"
+              class="banner-action-btn"
+              data-i18n-content="btnDownloadUninstaller"
+              style="display:none"></button>
     </div>
 
     <!-- Section 1: Introduction (hidden when connected) -->
@@ -405,26 +425,6 @@
           style="margin: 0 0 12px; padding-left: 20px; line-height: 1.7; color: #475569;">
         <li><span data-i18n-content="optionsInstallUnix"></span> <code>bash install.sh</code></li>
       </ul>
-
-      <!-- Python: Windows -->
-      <div data-is-user-os="false" id="python-win">
-        <p style="margin: 12px 0 8px; line-height: 1.7; color: #475569;"
-           data-i18n-content="optionsPythonWinHint"></p>
-        <div class="download-box">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <path d="M16 10a4 4 0 0 1-8 0"/>
-          </svg>
-          <div class="dl-text">
-            <strong>Python 3</strong>
-            <span>Microsoft Store</span>
-          </div>
-          <a href="https://apps.microsoft.com/detail/9nq7512cxl7t" target="_blank" rel="noopener noreferrer"
-             data-i18n-content="btnGetPython3"></a>
-        </div>
-      </div>
 
       <!-- Python: Linux / macOS -->
       <div data-is-user-os="false" id="python-unix">

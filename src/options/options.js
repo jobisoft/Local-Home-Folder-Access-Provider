@@ -98,17 +98,25 @@ function buildZip(entries) {
   return new Blob([...localParts, ...centralParts, eocd], { type: 'application/zip' });
 }
 
-async function downloadNativeApp() {
-  const files = [
+function helperBundleForOs(os) {
+  const common = [
     'native-messaging-app/expose_home_folder_host.py',
     'native-messaging-app/expose_home_folder_host.json',
-    'native-messaging-app/install.sh',
-    'native-messaging-app/uninstall.sh',
-    'native-messaging-app/install.bat',
-    'native-messaging-app/uninstall.bat',
   ];
+  if (os === 'win') {
+    return { files: [...common, 'native-messaging-app/install.bat', 'native-messaging-app/uninstall.bat'], suffix: '_windows' };
+  }
+  if (os === 'mac') {
+    return { files: [...common, 'native-messaging-app/install.sh', 'native-messaging-app/uninstall.sh'], suffix: '_mac' };
+  }
+  return { files: [...common, 'native-messaging-app/install.sh', 'native-messaging-app/uninstall.sh'], suffix: '_linux' };
+}
 
-  const entries = await Promise.all(files.map(async path => {
+async function downloadNativeApp() {
+  const { os } = await browser.runtime.getPlatformInfo();
+  const bundle = helperBundleForOs(os);
+
+  const entries = await Promise.all(bundle.files.map(async path => {
     const resp = await fetch(browser.runtime.getURL(path));
     const data = new Uint8Array(await resp.arrayBuffer());
     return { name: path.replace('native-messaging-app/', ''), data };
@@ -118,7 +126,7 @@ async function downloadNativeApp() {
   const url = URL.createObjectURL(blob);
   await browser.downloads.download({
     url,
-    filename: 'native-home-folder-file-system-access-app.zip',
+    filename: `native-home-folder-file-system-access-app${bundle.suffix}.zip`,
     saveAs: true,
   });
   URL.revokeObjectURL(url);
@@ -128,6 +136,29 @@ document.getElementById('download-link').addEventListener('click', e => {
   e.preventDefault();
   downloadNativeApp();
 });
+
+function uninstallerForOs(os) {
+  if (os === 'win') return { src: 'native-messaging-app/uninstall.bat', name: 'uninstall.bat' };
+  if (os === 'linux' || os === 'mac') return { src: 'native-messaging-app/uninstall.sh', name: 'uninstall.sh' };
+  return null;
+}
+
+async function downloadUninstaller() {
+  const { os } = await browser.runtime.getPlatformInfo();
+  const file = uninstallerForOs(os);
+  if (!file) return;
+  const resp = await fetch(browser.runtime.getURL(file.src));
+  const blob = await resp.blob();
+  const objectUrl = URL.createObjectURL(blob);
+  await browser.downloads.download({
+    url: objectUrl,
+    filename: file.name,
+    saveAs: true,
+  });
+  URL.revokeObjectURL(objectUrl);
+}
+
+document.getElementById('banner-uninstall-btn').addEventListener('click', downloadUninstaller);
 
 // ── Native messaging health check ──────────────────────────────────────────────
 
@@ -182,6 +213,9 @@ async function runConnectionCheck() {
     title.textContent = browser.i18n.getMessage('bannerOkTitle');
     detail.textContent = browser.i18n.getMessage('bannerOkDetail');
     introSection.style.display = 'none';
+
+    const { os } = await browser.runtime.getPlatformInfo();
+    document.getElementById('banner-uninstall-btn').style.display = uninstallerForOs(os) ? '' : 'none';
   } else {
     banner.className = 'banner banner-error';
     iconErr.style.display = '';
@@ -264,10 +298,15 @@ async function applyOsSections() {
   const isWin = os === 'win';
   if (isWin) {
     document.getElementById('install-win').dataset.isUserOs = "true";
-    document.getElementById('python-win').dataset.isUserOs = "true";
   } else {
     document.getElementById('install-unix').dataset.isUserOs = "true";
     document.getElementById('python-unix').dataset.isUserOs = "true";
+  }
+
+  const bundle = helperBundleForOs(os);
+  const filenameSpan = document.querySelector('[data-i18n-content="optionsDownloadFilename"]');
+  if (filenameSpan) {
+    filenameSpan.textContent = `native-home-folder-file-system-access-app${bundle.suffix}.zip`;
   }
 }
 

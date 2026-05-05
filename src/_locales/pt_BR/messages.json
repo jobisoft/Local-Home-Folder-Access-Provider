@@ -3,7 +3,7 @@
     "message": "VFS-Provider: Acesso à pasta pessoal local"
   },
   "extensionDescription": {
-    "message": "Um complemento VFS-Provider que permite que WebExtensions usando o VFS Toolkit acessem a pasta inicial local do usuário por meio de um aplicativo auxiliar de mensagens nativas."
+    "message": "Um complemento VFS-Provider que permite que WebExtensions usando o VFS Toolkit acessem a pasta inicial local do usuário por meio de um aplicativo auxiliar de acesso ao sistema de arquivos local."
   },
   "providerName": {
     "message": "Pasta pessoal local"
@@ -19,6 +19,9 @@
   },
   "btnDownload": {
     "message": "Baixar"
+  },
+  "btnDownloadUninstaller": {
+    "message": "Baixar desinstalador"
   },
   "btnRevoke": {
     "message": "Revogar"
@@ -73,16 +76,16 @@
     "message": "Provedor de acesso à pasta pessoal local — Opções"
   },
   "bannerChecking": {
-    "message": "Verificando conexão de mensagem nativa…"
+    "message": "Verificando a conexão com o aplicativo auxiliar…"
   },
   "bannerOkTitle": {
-    "message": "O auxiliar de mensagem nativa está em execução"
+    "message": "O aplicativo auxiliar de acesso ao sistema de arquivos local está em execução"
   },
   "bannerOkDetail": {
-    "message": "O auxiliar do sistema de arquivos local está instalado e respondendo corretamente."
+    "message": "O aplicativo auxiliar de acesso ao sistema de arquivos local está instalado e respondendo corretamente."
   },
   "errorNativeNotConnectedTitle": {
-    "message": "Aplicativo nativo não conectado"
+    "message": "Aplicativo auxiliar de acesso ao sistema de arquivos local não conectado"
   },
   "errorNativeNotConnectedDesc": {
     "message": "O provedor pode não estar totalmente configurado. Abra a página de opções da extensão «$EXTENSION_NAME$» para mais detalhes e instruções de configuração.",
@@ -93,7 +96,7 @@
     }
   },
   "bannerErrorTitle": {
-    "message": "Auxiliar de mensagem nativa não encontrado"
+    "message": "Aplicativo auxiliar de acesso ao sistema de arquivos local não encontrado"
   },
   "bannerErrorDetail": {
     "message": "O aplicativo auxiliar não está instalado ou não está respondendo. Siga as instruções de configuração abaixo para começar."
@@ -126,7 +129,7 @@
     "message": "Aviso de segurança: Conceder acesso ao sistema de arquivos tem implicações de segurança. Considere se você realmente precisa de acesso direto ao sistema de arquivos ou se um backend de armazenamento menos intrusivo poderia funcionar igualmente bem."
   },
   "optionsDownloadTitle": {
-    "message": "Auxiliar de mensagem nativa"
+    "message": "Aplicativo auxiliar de acesso ao sistema de arquivos local"
   },
   "optionsDownloadFilename": {
     "message": "native-home-folder-file-system-access-app.zip"
@@ -164,13 +167,7 @@
   "optionsInstallUnix": {
     "message": "Abra um terminal e execute:"
   },
-  "optionsPythonWinHint": {
-    "message": "O Python 3 é necessário para executar o aplicativo auxiliar. Se você ainda não tem o Python 3, instale-o pela Microsoft Store:"
-  },
   "optionsPythonUnixHint": {
     "message": "O Python 3 é necessário para executar o aplicativo auxiliar. Instale-o usando o gerenciador de pacotes do sistema, se ainda não estiver presente, p. ex.:"
-  },
-  "btnGetPython3": {
-    "message": "Obter Python 3"
   }
 }

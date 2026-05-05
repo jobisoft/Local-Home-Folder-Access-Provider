@@ -3,7 +3,7 @@
     "message": "VFS-Provider: Accesso alla cartella home locale"
   },
   "extensionDescription": {
-    "message": "Un componente aggiuntivo VFS-Provider che consente alle WebExtension che utilizzano il VFS Toolkit di accedere alla cartella home locale dell'utente tramite un'applicazione helper di messaggistica nativa."
+    "message": "Un componente aggiuntivo VFS-Provider che consente alle WebExtension che utilizzano il VFS Toolkit di accedere alla cartella home locale dell'utente tramite un'applicazione helper di accesso al file system locale."
   },
   "providerName": {
     "message": "Cartella home locale"
@@ -19,6 +19,9 @@
   },
   "btnDownload": {
     "message": "Scarica"
+  },
+  "btnDownloadUninstaller": {
+    "message": "Scarica disinstallatore"
   },
   "btnRevoke": {
     "message": "Revoca"
@@ -73,16 +76,16 @@
     "message": "Provider di accesso alla cartella home locale — Opzioni"
   },
   "bannerChecking": {
-    "message": "Verifica della connessione di messaggistica nativa in corso…"
+    "message": "Verifica della connessione all'applicazione helper in corso…"
   },
   "bannerOkTitle": {
-    "message": "L'helper di messaggistica nativa è in esecuzione"
+    "message": "L'applicazione helper di accesso al file system locale è in esecuzione"
   },
   "bannerOkDetail": {
-    "message": "L'helper del file system locale è installato e risponde correttamente."
+    "message": "L'applicazione helper di accesso al file system locale è installata e risponde correttamente."
   },
   "errorNativeNotConnectedTitle": {
-    "message": "Applicazione nativa non connessa"
+    "message": "Applicazione helper di accesso al file system locale non connessa"
   },
   "errorNativeNotConnectedDesc": {
     "message": "Il provider potrebbe non essere completamente configurato. Apri la pagina delle opzioni dell'estensione «$EXTENSION_NAME$» per ulteriori dettagli e istruzioni di configurazione.",
@@ -93,7 +96,7 @@
     }
   },
   "bannerErrorTitle": {
-    "message": "Helper di messaggistica nativa non trovato"
+    "message": "Applicazione helper di accesso al file system locale non trovata"
   },
   "bannerErrorDetail": {
     "message": "L'applicazione helper non è installata o non risponde. Seguire le istruzioni di configurazione di seguito per iniziare."
@@ -126,7 +129,7 @@
     "message": "Avviso di sicurezza: Concedere l'accesso al file system ha implicazioni di sicurezza. Valuta se hai davvero bisogno dell'accesso diretto al file system o se un backend di archiviazione meno invasivo potrebbe funzionare altrettanto bene."
   },
   "optionsDownloadTitle": {
-    "message": "Helper di messaggistica nativa"
+    "message": "Applicazione helper di accesso al file system locale"
   },
   "optionsDownloadFilename": {
     "message": "native-home-folder-file-system-access-app.zip"
@@ -164,13 +167,7 @@
   "optionsInstallUnix": {
     "message": "Apri un terminale ed esegui:"
   },
-  "optionsPythonWinHint": {
-    "message": "Python 3 è necessario per eseguire l'applicazione helper. Se non hai ancora Python 3, installalo dal Microsoft Store:"
-  },
   "optionsPythonUnixHint": {
     "message": "Python 3 è necessario per eseguire l'applicazione helper. Installalo usando il gestore di pacchetti del sistema se non è già presente, ad es.:"
-  },
-  "btnGetPython3": {
-    "message": "Ottieni Python 3"
   }
 }

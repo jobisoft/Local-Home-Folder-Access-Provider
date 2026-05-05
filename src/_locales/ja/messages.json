@@ -3,7 +3,7 @@
     "message": "VFS-Provider: ローカルホームフォルダーアクセス"
   },
   "extensionDescription": {
-    "message": "VFS Toolkit を使用する WebExtensions がネイティブメッセージングヘルパーアプリケーションを通じてユーザーのローカルホームフォルダーにアクセスできるようにする VFS provider アドオンです。"
+    "message": "VFS Toolkit を使用する WebExtensions がローカルファイルシステムアクセスヘルパーアプリを通じてユーザーのローカルホームフォルダーにアクセスできるようにする VFS provider アドオンです。"
   },
   "providerName": {
     "message": "ローカルホームフォルダー"
@@ -19,6 +19,9 @@
   },
   "btnDownload": {
     "message": "ダウンロード"
+  },
+  "btnDownloadUninstaller": {
+    "message": "アンインストーラーをダウンロード"
   },
   "btnRevoke": {
     "message": "取り消し"
@@ -73,16 +76,16 @@
     "message": "ローカルホームフォルダーアクセスプロバイダー — オプション"
   },
   "bannerChecking": {
-    "message": "ネイティブメッセージング接続を確認中…"
+    "message": "ヘルパーアプリの接続を確認中…"
   },
   "bannerOkTitle": {
-    "message": "ネイティブメッセージングヘルパーが起動中"
+    "message": "ローカルファイルシステムアクセスヘルパーアプリは実行中です"
   },
   "bannerOkDetail": {
-    "message": "ローカルファイルシステムヘルパーがインストールされており、正常に応答しています。"
+    "message": "ローカルファイルシステムアクセスヘルパーアプリはインストールされ、正常に応答しています。"
   },
   "errorNativeNotConnectedTitle": {
-    "message": "ネイティブアプリが接続されていません"
+    "message": "ローカルファイルシステムアクセスヘルパーアプリが接続されていません"
   },
   "errorNativeNotConnectedDesc": {
     "message": "プロバイダーが完全に設定されていない可能性があります。詳細とセットアップ手順については、「$EXTENSION_NAME$」拡張機能のオプションページを開いてください。",
@@ -93,7 +96,7 @@
     }
   },
   "bannerErrorTitle": {
-    "message": "ネイティブメッセージングヘルパーが見つかりません"
+    "message": "ローカルファイルシステムアクセスヘルパーアプリが見つかりません"
   },
   "bannerErrorDetail": {
     "message": "ヘルパーアプリケーションがインストールされていないか、応答していません。開始するには以下のセットアップ手順に従ってください。"
@@ -126,7 +129,7 @@
     "message": "セキュリティに関する注意：ファイルシステムへのアクセスを許可するとセキュリティ上の影響があります。直接のファイルシステムアクセスが本当に必要かどうか、またはより侵襲性の低いストレージバックエンドで対応できないかをご検討ください。"
   },
   "optionsDownloadTitle": {
-    "message": "ネイティブメッセージングヘルパー"
+    "message": "ローカルファイルシステムアクセスヘルパーアプリ"
   },
   "optionsDownloadFilename": {
     "message": "native-home-folder-file-system-access-app.zip"
@@ -164,13 +167,7 @@
   "optionsInstallUnix": {
     "message": "ターミナルを開いて実行してください："
   },
-  "optionsPythonWinHint": {
-    "message": "ヘルパーアプリケーションの実行にはPython 3が必要です。Python 3をまだインストールしていない場合は、Microsoft Storeからインストールしてください："
-  },
   "optionsPythonUnixHint": {
     "message": "ヘルパーアプリケーションの実行にはPython 3が必要です。まだインストールされていない場合は、システムのパッケージマネージャーを使用してインストールしてください（例）："
-  },
-  "btnGetPython3": {
-    "message": "Python 3を入手"
   }
 }

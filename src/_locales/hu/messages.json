@@ -3,7 +3,7 @@
     "message": "VFS-Provider: Helyi saját mappa hozzáférése"
   },
   "extensionDescription": {
-    "message": "Egy VFS-Provider bővítmény, amely lehetővé teszi a VFS Toolkit-et használó WebExtensions számára, hogy natív üzenetküldő segédalkalmazáson keresztül hozzáférjenek a felhasználó helyi kezdőmappájához."
+    "message": "Egy VFS-Provider bővítmény, amely lehetővé teszi a VFS Toolkit-et használó WebExtensions számára, hogy egy helyi fájlrendszer-hozzáférési segédprogramon keresztül hozzáférjenek a felhasználó helyi kezdőmappájához."
   },
   "providerName": {
     "message": "Helyi saját mappa"
@@ -19,6 +19,9 @@
   },
   "btnDownload": {
     "message": "Letöltés"
+  },
+  "btnDownloadUninstaller": {
+    "message": "Eltávolító letöltése"
   },
   "btnRevoke": {
     "message": "Visszavonás"
@@ -73,16 +76,16 @@
     "message": "Helyi saját mappa hozzáférés-szolgáltató — Beállítások"
   },
   "bannerChecking": {
-    "message": "Natív üzenetküldési kapcsolat ellenőrzése…"
+    "message": "Segédprogram-kapcsolat ellenőrzése…"
   },
   "bannerOkTitle": {
-    "message": "A natív üzenetküldési segítő fut"
+    "message": "A helyi fájlrendszer-hozzáférési segédprogram fut"
   },
   "bannerOkDetail": {
-    "message": "A helyi fájlrendszer-segítő telepítve van és megfelelően válaszol."
+    "message": "A helyi fájlrendszer-hozzáférési segédprogram telepítve van és megfelelően válaszol."
   },
   "errorNativeNotConnectedTitle": {
-    "message": "A natív alkalmazás nem csatlakozott"
+    "message": "A helyi fájlrendszer-hozzáférési segédprogram nincs csatlakoztatva"
   },
   "errorNativeNotConnectedDesc": {
     "message": "Előfordulhat, hogy a szolgáltató nincs teljesen beállítva. A további részletekért és a beállítási utasításokért nyissa meg a(z) „$EXTENSION_NAME$“ bővítmény beállítások oldalát.",
@@ -93,7 +96,7 @@
     }
   },
   "bannerErrorTitle": {
-    "message": "A natív üzenetküldési segítő nem található"
+    "message": "A helyi fájlrendszer-hozzáférési segédprogram nem található"
   },
   "bannerErrorDetail": {
     "message": "A segítő alkalmazás nincs telepítve vagy nem válaszol. A kezdéshez kövesse az alábbi beállítási utasításokat."
@@ -126,7 +129,7 @@
     "message": "Biztonsági figyelmeztetés: A fájlrendszer-hozzáférés megadásának biztonsági vonatkozásai vannak. Fontolja meg, hogy valóban szüksége van-e közvetlen fájlrendszer-hozzáférésre, vagy egy kevésbé tolakodó tárolóháttér is megfelelne."
   },
   "optionsDownloadTitle": {
-    "message": "Natív üzenetküldési segítő"
+    "message": "Helyi fájlrendszer-hozzáférési segédprogram"
   },
   "optionsDownloadFilename": {
     "message": "native-home-folder-file-system-access-app.zip"
@@ -164,13 +167,7 @@
   "optionsInstallUnix": {
     "message": "Nyisson meg egy terminált, és futtassa:"
   },
-  "optionsPythonWinHint": {
-    "message": "A segédprogram futtatásához Python 3 szükséges. Ha még nincs Python 3, telepítse a Microsoft Store-ból:"
-  },
   "optionsPythonUnixHint": {
     "message": "A segédprogram futtatásához Python 3 szükséges. Telepítse a rendszer csomagkezelőjével, ha még nincs jelen, pl.:"
-  },
-  "btnGetPython3": {
-    "message": "Python 3 letöltése"
   }
 }

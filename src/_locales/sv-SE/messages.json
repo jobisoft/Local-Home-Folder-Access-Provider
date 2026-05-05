@@ -3,7 +3,7 @@
     "message": "VFS-Provider: Åtkomst till lokal hemmapp"
   },
   "extensionDescription": {
-    "message": "Ett VFS-Provider tillägg som gör det möjligt för WebExtensions som använder VFS Toolkit att komma åt användarens lokala hemkatalog via ett hjälpprogram för inbyggd meddelandehantering."
+    "message": "Ett VFS-Provider tillägg som gör det möjligt för WebExtensions som använder VFS Toolkit att komma åt användarens lokala hemkatalog via en hjälpapplikation för lokal filsystemsåtkomst."
   },
   "providerName": {
     "message": "Lokal hemmapp"
@@ -19,6 +19,9 @@
   },
   "btnDownload": {
     "message": "Hämta"
+  },
+  "btnDownloadUninstaller": {
+    "message": "Hämta avinstallerare"
   },
   "btnRevoke": {
     "message": "Återkalla"
@@ -73,16 +76,16 @@
     "message": "Åtkomstleverantör för lokal hemmapp — Alternativ"
   },
   "bannerChecking": {
-    "message": "Kontrollerar anslutning för inbyggd meddelandehantering…"
+    "message": "Kontrollerar anslutning till hjälpapplikationen…"
   },
   "bannerOkTitle": {
-    "message": "Hjälpprogrammet för inbyggd meddelandehantering körs"
+    "message": "Hjälpapplikationen för lokal filsystemsåtkomst körs"
   },
   "bannerOkDetail": {
-    "message": "Hjälpprogrammet för det lokala filsystemet är installerat och svarar korrekt."
+    "message": "Hjälpapplikationen för lokal filsystemsåtkomst är installerad och svarar korrekt."
   },
   "errorNativeNotConnectedTitle": {
-    "message": "Inbyggd app ej ansluten"
+    "message": "Hjälpapplikationen för lokal filsystemsåtkomst är inte ansluten"
   },
   "errorNativeNotConnectedDesc": {
     "message": "Leverantören kanske inte är helt konfigurerad. Öppna alternativsidan för tillägget «$EXTENSION_NAME$» för mer information och konfigurationsinstruktioner.",
@@ -93,7 +96,7 @@
     }
   },
   "bannerErrorTitle": {
-    "message": "Hjälpprogrammet för inbyggd meddelandehantering hittades inte"
+    "message": "Hjälpapplikationen för lokal filsystemsåtkomst hittades inte"
   },
   "bannerErrorDetail": {
     "message": "Hjälpprogrammet är inte installerat eller svarar inte. Följ installationsinstruktionerna nedan för att komma igång."
@@ -126,7 +129,7 @@
     "message": "Säkerhetsmeddelande: Att bevilja åtkomst till filsystemet har säkerhetskonsekvenser. Överväg om du verkligen behöver direkt filsystemsåtkomst, eller om en mindre påträngande lagringsbakände kan fungera lika bra."
   },
   "optionsDownloadTitle": {
-    "message": "Hjälpprogram för inbyggd meddelandehantering"
+    "message": "Hjälpapplikation för lokal filsystemsåtkomst"
   },
   "optionsDownloadFilename": {
     "message": "native-home-folder-file-system-access-app.zip"
@@ -164,13 +167,7 @@
   "optionsInstallUnix": {
     "message": "Öppna en terminal och kör:"
   },
-  "optionsPythonWinHint": {
-    "message": "Python 3 krävs för att köra hjälpapplikationen. Om du inte har Python 3 ännu, installera det från Microsoft Store:"
-  },
   "optionsPythonUnixHint": {
     "message": "Python 3 krävs för att köra hjälpapplikationen. Installera det med systemets pakethanterare om det inte redan finns, t.ex.:"
-  },
-  "btnGetPython3": {
-    "message": "Hämta Python 3"
   }
 }

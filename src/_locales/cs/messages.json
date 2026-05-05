@@ -3,7 +3,7 @@
     "message": "VFS-Provider: Přístup k lokální domovské složce"
   },
   "extensionDescription": {
-    "message": "Doplněk VFS-Provider, který umožňuje WebExtensions využívajícím VFS Toolkit přistupovat k místní domovské složce uživatele prostřednictvím nativní pomocné aplikace pro zasílání zpráv."
+    "message": "Doplněk VFS-Provider, který umožňuje WebExtensions využívajícím VFS Toolkit přistupovat k místní domovské složce uživatele prostřednictvím pomocné aplikace pro přístup k místnímu souborovému systému."
   },
   "providerName": {
     "message": "Lokální domovská složka"
@@ -19,6 +19,9 @@
   },
   "btnDownload": {
     "message": "Stáhnout"
+  },
+  "btnDownloadUninstaller": {
+    "message": "Stáhnout odinstalační program"
   },
   "btnRevoke": {
     "message": "Odvolat"
@@ -73,16 +76,16 @@
     "message": "Poskytovatel přístupu k lokální domovské složce — Možnosti"
   },
   "bannerChecking": {
-    "message": "Kontrola připojení nativního zasílání zpráv…"
+    "message": "Kontrola připojení pomocné aplikace…"
   },
   "bannerOkTitle": {
-    "message": "Pomocník pro nativní zasílání zpráv je spuštěn"
+    "message": "Pomocná aplikace pro přístup k místnímu souborovému systému je spuštěna"
   },
   "bannerOkDetail": {
-    "message": "Pomocník lokálního souborového systému je nainstalován a správně reaguje."
+    "message": "Pomocná aplikace pro přístup k místnímu souborovému systému je nainstalována a správně reaguje."
   },
   "errorNativeNotConnectedTitle": {
-    "message": "Nativní aplikace není připojena"
+    "message": "Pomocná aplikace pro přístup k místnímu souborovému systému není připojena"
   },
   "errorNativeNotConnectedDesc": {
     "message": "Poskytovatel nemusí být plně nastaven. Otevřete stránku možností rozšíření „$EXTENSION_NAME$“ pro více podrobností a pokyny k nastavení.",
@@ -93,7 +96,7 @@
     }
   },
   "bannerErrorTitle": {
-    "message": "Pomocník pro nativní zasílání zpráv nebyl nalezen"
+    "message": "Pomocná aplikace pro přístup k místnímu souborovému systému nebyla nalezena"
   },
   "bannerErrorDetail": {
     "message": "Pomocná aplikace není nainstalována nebo nereaguje. Začněte podle níže uvedených pokynů k nastavení."
@@ -126,7 +129,7 @@
     "message": "Bezpečnostní upozornění: Udělení přístupu k souborovému systému má bezpečnostní důsledky. Zvažte, zda skutečně potřebujete přímý přístup k souborovému systému, nebo zda by nestačil méně rušivý úložný backend."
   },
   "optionsDownloadTitle": {
-    "message": "Pomocník pro nativní zasílání zpráv"
+    "message": "Pomocná aplikace pro přístup k místnímu souborovému systému"
   },
   "optionsDownloadFilename": {
     "message": "native-home-folder-file-system-access-app.zip"
@@ -164,13 +167,7 @@
   "optionsInstallUnix": {
     "message": "Otevřete terminál a spusťte:"
   },
-  "optionsPythonWinHint": {
-    "message": "Pro spuštění pomocné aplikace je vyžadován Python 3. Pokud ještě Python 3 nemáte, nainstalujte ho z Microsoft Store:"
-  },
   "optionsPythonUnixHint": {
     "message": "Pro spuštění pomocné aplikace je vyžadován Python 3. Nainstalujte ho pomocí správce balíčků vašeho systému, pokud ještě není přítomen, např.:"
-  },
-  "btnGetPython3": {
-    "message": "Získat Python 3"
   }
 }

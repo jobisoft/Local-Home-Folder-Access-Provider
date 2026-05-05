@@ -3,11 +3,28 @@
 
 setlocal
 
-set "SCRIPT_DIR=%~dp0"
-set "SCRIPT_DIR=%SCRIPT_DIR:~0,-1%"
-set "WRAPPER=%SCRIPT_DIR%\expose_home_folder_host_runner.bat"
-set "MANIFEST_DEST=%APPDATA%\Mozilla\NativeMessagingHosts\expose_home_folder_host.json"
+set "INSTALL_DIR=%APPDATA%\Mozilla\NativeMessagingHosts\expose_home_folder_host_helper"
 set "REG_KEY=HKCU\SOFTWARE\Mozilla\NativeMessagingHosts\expose_home_folder_host"
+
+echo.
+echo This will uninstall the file system access helper app for the Thunderbird
+echo add-on "VFS-Provider: Local Home Folder Access".
+echo.
+echo The following will happen:
+echo   - Remove the file system access helper app from:
+echo       %INSTALL_DIR%
+echo   - Remove the registry entry:
+echo       %REG_KEY%
+echo.
+choice /c yn /n /m "Proceed with uninstallation? [y/n] "
+if errorlevel 2 (
+  echo Uninstallation cancelled.
+  echo.
+  pause
+  endlocal
+  exit /b 1
+)
+echo.
 
 reg delete "%REG_KEY%" /f >nul 2>&1
 if %errorlevel% equ 0 (
@@ -16,16 +33,14 @@ if %errorlevel% equ 0 (
   echo Registry key not found: %REG_KEY%
 )
 
-if exist "%MANIFEST_DEST%" (
-  del "%MANIFEST_DEST%"
-  echo Removed: %MANIFEST_DEST%
+if exist "%INSTALL_DIR%" (
+  rmdir /s /q "%INSTALL_DIR%"
+  echo Removed install dir: %INSTALL_DIR%
 ) else (
-  echo Not installed (not found): %MANIFEST_DEST%
+  echo Not installed (not found): %INSTALL_DIR%
 )
 
-if exist "%WRAPPER%" (
-  del "%WRAPPER%"
-  echo Removed wrapper: %WRAPPER%
-)
+echo.
+pause
 
 endlocal

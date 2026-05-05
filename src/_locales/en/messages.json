@@ -3,7 +3,7 @@
     "message": "VFS-Provider: Local Home Folder Access"
   },
   "extensionDescription": {
-    "message": "A VFS-Provider add-on that enables WebExtensions using the VFS Toolkit to access the user's local home folder through a native messaging helper application."
+    "message": "A VFS-Provider add-on that enables WebExtensions using the VFS Toolkit to access the user's local home folder through a local file system access helper app."
   },
   "providerName": {
     "message": "Local Home Folder Access"
@@ -19,6 +19,9 @@
   },
   "btnDownload": {
     "message": "Download"
+  },
+  "btnDownloadUninstaller": {
+    "message": "Download Uninstaller"
   },
   "btnRevoke": {
     "message": "Revoke"
@@ -73,16 +76,16 @@
     "message": "Local Home Folder Access Provider — Options"
   },
   "bannerChecking": {
-    "message": "Checking native messaging connection…"
+    "message": "Checking helper app connection…"
   },
   "bannerOkTitle": {
-    "message": "Native messaging helper is running"
+    "message": "Local file system access helper app is running"
   },
   "bannerOkDetail": {
-    "message": "The local file system helper is installed and responding correctly."
+    "message": "The local file system access helper app is installed and responding correctly."
   },
   "errorNativeNotConnectedTitle": {
-    "message": "Native app not connected"
+    "message": "Local file system access helper app not connected"
   },
   "errorNativeNotConnectedDesc": {
     "message": "The provider may not be fully set up. Open the options page of the \"$EXTENSION_NAME$\" extension for more details and setup instructions.",
@@ -93,7 +96,7 @@
     }
   },
   "bannerErrorTitle": {
-    "message": "Native messaging helper not found"
+    "message": "Local file system access helper app not found"
   },
   "bannerErrorDetail": {
     "message": "The helper application is not installed or not responding. Follow the setup instructions below to get started."
@@ -126,7 +129,7 @@
     "message": "Security notice: Granting file system access has security implications. Consider whether you really need direct file system access, or if a less intrusive storage backend might work as well."
   },
   "optionsDownloadTitle": {
-    "message": "Native Messaging Helper"
+    "message": "Local File System Access Helper App"
   },
   "optionsDownloadFilename": {
     "message": "native-home-folder-file-system-access-app.zip"
@@ -164,13 +167,7 @@
   "optionsInstallUnix": {
     "message": "Open a terminal and run:"
   },
-  "optionsPythonWinHint": {
-    "message": "Python 3 is required to run the helper application. If you don't have Python 3 yet, install it from the Microsoft Store:"
-  },
   "optionsPythonUnixHint": {
     "message": "Python 3 is required to run the helper application. Install it using your system's package manager if not already present, e.g.:"
-  },
-  "btnGetPython3": {
-    "message": "Get Python 3"
   }
 }

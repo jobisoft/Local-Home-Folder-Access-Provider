@@ -3,7 +3,7 @@
     "message": "VFS-Provider: Zugriff auf Eigene Dateien"
   },
   "extensionDescription": {
-    "message": "Ein VFS-Provider Add-on, das WebExtensions, die das VFS Toolkit verwenden, ermöglicht, über eine native Messaging-Hilfsanwendung auf den lokalen Home-Ordner des Benutzers zuzugreifen."
+    "message": "Ein VFS-Provider Add-on, das WebExtensions, die das VFS Toolkit verwenden, ermöglicht, über eine Hilfsanwendung für den Dateisystemzugriff auf den lokalen Home-Ordner des Benutzers zuzugreifen."
   },
   "providerName": {
     "message": "Lokaler Home-Ordner"
@@ -19,6 +19,9 @@
   },
   "btnDownload": {
     "message": "Herunterladen"
+  },
+  "btnDownloadUninstaller": {
+    "message": "Deinstaller herunterladen"
   },
   "btnRevoke": {
     "message": "Widerrufen"
@@ -73,16 +76,16 @@
     "message": "Anbieter für lokalen Home-Ordner-Zugriff — Optionen"
   },
   "bannerChecking": {
-    "message": "Native-Messaging-Verbindung wird geprüft…"
+    "message": "Verbindung zur Hilfsanwendung wird geprüft…"
   },
   "bannerOkTitle": {
-    "message": "Native-Messaging-Helfer läuft"
+    "message": "Hilfsanwendung für den lokalen Dateisystemzugriff läuft"
   },
   "bannerOkDetail": {
-    "message": "Der lokale Dateisystem-Helfer ist installiert und antwortet korrekt."
+    "message": "Die Hilfsanwendung für den lokalen Dateisystemzugriff ist installiert und antwortet korrekt."
   },
   "errorNativeNotConnectedTitle": {
-    "message": "Native App nicht verbunden"
+    "message": "Hilfsanwendung für den lokalen Dateisystemzugriff nicht verbunden"
   },
   "errorNativeNotConnectedDesc": {
     "message": "Der Anbieter ist möglicherweise nicht vollständig eingerichtet. Öffnen Sie die Optionsseite der Erweiterung „$EXTENSION_NAME$“ für weitere Details und Einrichtungsanweisungen.",
@@ -93,7 +96,7 @@
     }
   },
   "bannerErrorTitle": {
-    "message": "Native-Messaging-Helfer nicht gefunden"
+    "message": "Hilfsanwendung für den lokalen Dateisystemzugriff nicht gefunden"
   },
   "bannerErrorDetail": {
     "message": "Die Hilfsanwendung ist nicht installiert oder antwortet nicht. Folgen Sie den Einrichtungsanweisungen unten, um zu beginnen."
@@ -126,7 +129,7 @@
     "message": "Sicherheitshinweis: Das Gewähren von Dateisystemzugriff hat Sicherheitsauswirkungen. Überlegen Sie, ob Sie wirklich direkten Dateisystemzugriff benötigen oder ob ein weniger invasives Speicher-Backend ausreichen würde."
   },
   "optionsDownloadTitle": {
-    "message": "Native-Messaging-Helfer"
+    "message": "Hilfsanwendung für den lokalen Dateisystemzugriff"
   },
   "optionsDownloadFilename": {
     "message": "native-home-folder-file-system-access-app.zip"
@@ -164,13 +167,7 @@
   "optionsInstallUnix": {
     "message": "Öffnen Sie ein Terminal und führen Sie aus:"
   },
-  "optionsPythonWinHint": {
-    "message": "Python 3 ist erforderlich, um die Hilfsanwendung auszuführen. Falls Sie Python 3 noch nicht haben, installieren Sie es aus dem Microsoft Store:"
-  },
   "optionsPythonUnixHint": {
     "message": "Python 3 ist erforderlich, um die Hilfsanwendung auszuführen. Installieren Sie es mit dem Paketmanager Ihres Systems, falls noch nicht vorhanden, z. B.:"
-  },
-  "btnGetPython3": {
-    "message": "Python 3 holen"
   }
 }
