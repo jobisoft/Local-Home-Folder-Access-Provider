@@ -46,8 +46,8 @@ if "%PYTHON_PRESENT%"=="1" goto :do_install
 echo Python 3 is required to run the helper app to orchestrate the file system
 echo access. The Microsoft Store will be opened to first install the
 echo "Python Install Manager". After the Store install has completed:
-echo   1. Open the Python Install Manager. The "Install" button should have become
-echo      an "Open" button.
+echo   1. Open the Python Install Manager (the "Install" button should have become
+echo      an "Open" button).
 echo   2. The Install Manager will install the Python interpreter and keep it
 echo      up to date. All prompts during the setup process can be answered with
 echo      the default choice (just press Enter).
