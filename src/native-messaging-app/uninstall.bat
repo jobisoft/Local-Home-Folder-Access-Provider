@@ -42,13 +42,11 @@ if exist "%INSTALL_DIR%" (
     echo Some files are still in use by Thunderbird or another process:
     echo   %INSTALL_DIR%
     echo.
-    echo Please close Thunderbird, or restart your PC, then run this uninstaller again.
-    echo.
-    pause
-    endlocal
-    exit /b 1
+    echo Please close Thunderbird, or restart your PC, then run this uninstaller
+    echo again or remove the folder manually.
+  ) else (
+    echo Removed install dir: %INSTALL_DIR%
   )
-  echo Removed install dir: %INSTALL_DIR%
 ) else (
   rem echo Install dir not found: %INSTALL_DIR%
 )
