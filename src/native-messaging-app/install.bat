@@ -33,8 +33,8 @@ echo       %REG_KEY%
 echo.
 choice /c yn /n /m "Proceed with installation? [y/n] "
 if errorlevel 2 (
-  echo Installation cancelled.
   echo.
+  echo Installation cancelled.
   pause
   endlocal
   exit /b 1
@@ -101,7 +101,6 @@ echo Registry key: %REG_KEY%
 echo.
 echo Restart Thunderbird to apply the changes.
 echo The downloaded files can now be safely removed.
-echo.
 pause
 
 endlocal

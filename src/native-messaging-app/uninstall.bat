@@ -18,8 +18,8 @@ echo       %REG_KEY%
 echo.
 choice /c yn /n /m "Proceed with uninstallation? [y/n] "
 if errorlevel 2 (
-  echo Uninstallation cancelled.
   echo.
+  echo Uninstallation cancelled.
   pause
   endlocal
   exit /b 1
@@ -31,27 +31,30 @@ if %errorlevel% equ 0 (
   reg delete "%REG_KEY%" /f >nul
   echo Removed registry key: %REG_KEY%
 ) else (
-  rem echo Registry key not found: %REG_KEY%
+  echo Registry key already removed: %REG_KEY%
 )
 
+rem 
 if exist "%INSTALL_DIR%" (
   rmdir /s /q "%INSTALL_DIR%" >nul 2>&1
-  if errorlevel 1 (
-    echo.
+  if exist "%INSTALL_DIR%" (
     echo ERROR: Could not fully remove the file system access helper app.
     echo Some files are still in use by Thunderbird or another process:
     echo   %INSTALL_DIR%
     echo.
     echo Please close Thunderbird, or restart your PC, then run this uninstaller
     echo again or remove the folder manually.
-  ) else (
-    echo Removed install dir: %INSTALL_DIR%
+    pause
+    endlocal
+    exit /b 1
   )
+  echo Removed install dir: %INSTALL_DIR%
 ) else (
-  rem echo Install dir not found: %INSTALL_DIR%
+  echo Install dir already removed: %INSTALL_DIR%
 )
 
 echo.
+echo The file system access helper app was sucessfully removed.
 pause
 
 endlocal
