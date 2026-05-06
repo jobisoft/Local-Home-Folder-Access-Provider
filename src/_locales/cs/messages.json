@@ -69,6 +69,12 @@
   "configShowHiddenDesc": {
     "message": "Zahrnout soubory a složky, jejichž název začíná tečkou (např. .bashrc)."
   },
+  "configFollowSymlinksTitle": {
+    "message": "Sledovat symbolické odkazy"
+  },
+  "configFollowSymlinksDesc": {
+    "message": "Rozlišovat symbolické odkazy a junctions ve vaší domovské složce. Když je tato volba zapnutá, soubory mimo domovskou složku budou dostupné přes jakýkoli symbolický odkaz, který jste tam vytvořili. Starší windowsové kompatibilní junctions nejsou nikdy sledovány."
+  },
   "configSaved": {
     "message": "Nastavení uloženo."
   },

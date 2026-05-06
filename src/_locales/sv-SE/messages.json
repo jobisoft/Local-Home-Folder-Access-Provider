@@ -69,6 +69,12 @@
   "configShowHiddenDesc": {
     "message": "Inkludera filer och mappar vars namn börjar med en punkt (t.ex. .bashrc)."
   },
+  "configFollowSymlinksTitle": {
+    "message": "Följ symboliska länkar"
+  },
+  "configFollowSymlinksDesc": {
+    "message": "Lös symboliska länkar och junctions inuti din hemmapp. När det är aktiverat blir filer utanför din hemmapp åtkomliga via valfri symbolisk länk du har placerat där. Äldre Windows-kompatibilitetsjunctions följs aldrig."
+  },
   "configSaved": {
     "message": "Inställningar sparade."
   },

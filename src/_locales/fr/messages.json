@@ -69,6 +69,12 @@
   "configShowHiddenDesc": {
     "message": "Inclure les fichiers et dossiers dont le nom commence par un point (ex. .bashrc)."
   },
+  "configFollowSymlinksTitle": {
+    "message": "Suivre les liens symboliques"
+  },
+  "configFollowSymlinksDesc": {
+    "message": "Résoudre les liens symboliques et jonctions à l'intérieur de votre dossier personnel. Lorsqu'il est activé, les fichiers en dehors de votre dossier personnel deviennent accessibles via tout lien symbolique que vous y avez placé. Les jonctions de compatibilité Windows héritées ne sont jamais suivies."
+  },
   "configSaved": {
     "message": "Paramètres enregistrés."
   },

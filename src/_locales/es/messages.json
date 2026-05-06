@@ -69,6 +69,12 @@
   "configShowHiddenDesc": {
     "message": "Incluir archivos y carpetas cuyo nombre comienza con un punto (p. ej. .bashrc)."
   },
+  "configFollowSymlinksTitle": {
+    "message": "Seguir enlaces simbólicos"
+  },
+  "configFollowSymlinksDesc": {
+    "message": "Resolver enlaces simbólicos y junctions dentro de su carpeta personal. Cuando está activado, los archivos fuera de su carpeta personal se vuelven accesibles a través de cualquier enlace simbólico que haya colocado allí. Las junctions de compatibilidad heredadas de Windows nunca se siguen."
+  },
   "configSaved": {
     "message": "Configuración guardada."
   },

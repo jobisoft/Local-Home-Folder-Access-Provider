@@ -69,6 +69,12 @@
   "configShowHiddenDesc": {
     "message": "Ponttal kezdődő nevű fájlok és mappák megjelenítése (pl. .bashrc)."
   },
+  "configFollowSymlinksTitle": {
+    "message": "Szimbolikus hivatkozások követése"
+  },
+  "configFollowSymlinksDesc": {
+    "message": "Szimbolikus hivatkozások és junctions feloldása a saját mappán belül. Ha engedélyezve van, a saját mappán kívüli fájlok elérhetővé válnak az ott elhelyezett bármely szimbolikus hivatkozáson keresztül. A korábbi Windows kompatibilitási junction-öket soha nem követi."
+  },
   "configSaved": {
     "message": "Beállítások mentve."
   },

@@ -69,6 +69,12 @@
   "configShowHiddenDesc": {
     "message": "ドットで始まる名前のファイルやフォルダーを含めます（例：.bashrc）。"
   },
+  "configFollowSymlinksTitle": {
+    "message": "シンボリックリンクをたどる"
+  },
+  "configFollowSymlinksDesc": {
+    "message": "ホームフォルダー内のシンボリックリンクおよびジャンクションを解決します。有効にすると、そこに配置したシンボリックリンクを通じてホームフォルダー外のファイルにアクセスできるようになります。レガシーな Windows 互換ジャンクションは決してたどりません。"
+  },
   "configSaved": {
     "message": "設定を保存しました。"
   },

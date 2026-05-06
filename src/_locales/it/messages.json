@@ -69,6 +69,12 @@
   "configShowHiddenDesc": {
     "message": "Includi file e cartelle il cui nome inizia con un punto (es. .bashrc)."
   },
+  "configFollowSymlinksTitle": {
+    "message": "Segui i link simbolici"
+  },
+  "configFollowSymlinksDesc": {
+    "message": "Risolvi link simbolici e junction all'interno della cartella home. Quando abilitato, i file al di fuori della cartella home diventano raggiungibili tramite qualsiasi link simbolico che vi hai posizionato. Le junction di compatibilità Windows legacy non vengono mai seguite."
+  },
   "configSaved": {
     "message": "Impostazioni salvate."
   },

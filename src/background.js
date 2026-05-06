@@ -133,6 +133,13 @@ class NativeFsVfsProvider extends VfsProviderImplementation {
     if (!known) throw Object.assign(new Error('Unauthorized storageId'), { code: 'E:AUTH' });
   }
 
+  /** Per-storage "Follow symbolic links" toggle (default false). */
+  async #followSymlinks(storageId) {
+    const key = `vfs-toolkit-local-follow-symlinks-${storageId}`;
+    const rv = await browser.storage.local.get({ [key]: false });
+    return rv[key];
+  }
+
   // ── VFS provider handlers ────────────────────────────────────────────────────
 
   async onCancel(canceledRequestId) {
@@ -150,14 +157,18 @@ class NativeFsVfsProvider extends VfsProviderImplementation {
 
   async onList(requestId, storageId, path) {
     await this.#assertAuth(storageId);
-    const key = `vfs-toolkit-local-show-hidden-${storageId}`;
-    const rv = await browser.storage.local.get({ [key]: false });
-    return this.#send(requestId, 'list', { path, showHidden: rv[key] });
+    const showKey = `vfs-toolkit-local-show-hidden-${storageId}`;
+    const followKey = `vfs-toolkit-local-follow-symlinks-${storageId}`;
+    const rv = await browser.storage.local.get({ [showKey]: false, [followKey]: false });
+    return this.#send(requestId, 'list', {
+      path, showHidden: rv[showKey], followSymlinks: rv[followKey],
+    });
   }
 
   async onReadFile(requestId, storageId, path) {
     await this.#assertAuth(storageId);
-    const result = await this.#send(requestId, 'readFile', { path });
+    const followSymlinks = await this.#followSymlinks(storageId);
+    const result = await this.#send(requestId, 'readFile', { path, followSymlinks });
 
     let name, type, lastModified, bytes;
 
@@ -188,6 +199,7 @@ class NativeFsVfsProvider extends VfsProviderImplementation {
 
   async onWriteFile(requestId, storageId, path, file, overwrite) {
     await this.#assertAuth(storageId);
+    const followSymlinks = await this.#followSymlinks(storageId);
     const blob = file instanceof Blob ? file : new Blob([], { type: 'application/octet-stream' });
     const buffer = await blob.arrayBuffer();
     const bytes = new Uint8Array(buffer);
@@ -195,7 +207,7 @@ class NativeFsVfsProvider extends VfsProviderImplementation {
     if (bytes.byteLength <= CHUNK_SIZE) {
       // Small file: single message, no chunking.
       await this.#send(requestId, 'writeFile', {
-        path, overwrite, content: bytesToBase64(bytes),
+        path, overwrite, followSymlinks, content: bytesToBase64(bytes),
       });
       return;
     }
@@ -208,48 +220,55 @@ class NativeFsVfsProvider extends VfsProviderImplementation {
       const chunkRequestId = idx === 0 ? requestId : `${requestId}_c${idx}`;
       // await each chunk so we don't flood the native app's stdin buffer.
       await this.#send(chunkRequestId, 'writeFile', {
-        path, overwrite, uploadId, more, content: bytesToBase64(chunk),
+        path, overwrite, followSymlinks, uploadId, more, content: bytesToBase64(chunk),
       });
     }
   }
 
   async onAddFolder(requestId, storageId, path) {
     await this.#assertAuth(storageId);
-    await this.#send(requestId, 'addFolder', { path });
+    const followSymlinks = await this.#followSymlinks(storageId);
+    await this.#send(requestId, 'addFolder', { path, followSymlinks });
   }
 
   async onMoveFile(requestId, storageId, oldPath, newPath, overwrite) {
     await this.#assertAuth(storageId);
-    await this.#send(requestId, 'moveFile', { oldPath, newPath, overwrite });
+    const followSymlinks = await this.#followSymlinks(storageId);
+    await this.#send(requestId, 'moveFile', { oldPath, newPath, overwrite, followSymlinks });
   }
 
   async onMoveFolder(requestId, storageId, oldPath, newPath, merge) {
     await this.#assertAuth(storageId);
-    await this.#send(requestId, 'moveFolder', { oldPath, newPath, merge });
+    const followSymlinks = await this.#followSymlinks(storageId);
+    await this.#send(requestId, 'moveFolder', { oldPath, newPath, merge, followSymlinks });
   }
 
   async onCopyFile(requestId, storageId, oldPath, newPath, overwrite) {
     await this.#assertAuth(storageId);
-    await this.#send(requestId, 'copyFile', { oldPath, newPath, overwrite });
+    const followSymlinks = await this.#followSymlinks(storageId);
+    await this.#send(requestId, 'copyFile', { oldPath, newPath, overwrite, followSymlinks });
   }
 
   async onCopyFolder(requestId, storageId, oldPath, newPath, merge) {
     await this.#assertAuth(storageId);
-    await this.#send(requestId, 'copyFolder', { oldPath, newPath, merge });
+    const followSymlinks = await this.#followSymlinks(storageId);
+    await this.#send(requestId, 'copyFolder', { oldPath, newPath, merge, followSymlinks });
   }
 
   async onDeleteFile(requestId, storageId, path) {
     await this.#assertAuth(storageId);
+    const followSymlinks = await this.#followSymlinks(storageId);
     // vfs-toolkit contract: delete is silent if the target does not exist.
-    await this.#send(requestId, 'deleteFile', { path }).catch(e => {
+    await this.#send(requestId, 'deleteFile', { path, followSymlinks }).catch(e => {
       if (e.code !== 'E:NOTFOUND') throw e;
     });
   }
 
   async onDeleteFolder(requestId, storageId, path) {
     await this.#assertAuth(storageId);
+    const followSymlinks = await this.#followSymlinks(storageId);
     // vfs-toolkit contract: delete is silent if the target does not exist.
-    await this.#send(requestId, 'deleteFolder', { path }).catch(e => {
+    await this.#send(requestId, 'deleteFolder', { path, followSymlinks }).catch(e => {
       if (e.code !== 'E:NOTFOUND') throw e;
     });
   }
@@ -280,12 +299,17 @@ browser.runtime.onInstalled.addListener(({ reason }) => {
   if (reason === 'install') browser.runtime.openOptionsPage();
 });
 
-// When the "show hidden files" config changes, tell affected pickers to refresh.
+// When a per-storage listing option changes, tell affected pickers to refresh.
+const PER_STORAGE_OPTION_PREFIXES = [
+  'vfs-toolkit-local-show-hidden-',
+  'vfs-toolkit-local-follow-symlinks-',
+];
 browser.storage.onChanged.addListener((changes, area) => {
   if (area !== 'local') return;
   for (const key of Object.keys(changes)) {
-    if (!key.startsWith('vfs-toolkit-local-show-hidden-')) continue;
-    const storageId = key.slice('vfs-toolkit-local-show-hidden-'.length);
+    const prefix = PER_STORAGE_OPTION_PREFIXES.find(p => key.startsWith(p));
+    if (!prefix) continue;
+    const storageId = key.slice(prefix.length);
     provider.reportStorageChange(storageId, [{ targetPath: '/', kind: 'directory', action: 'modified' }]);
   }
 });

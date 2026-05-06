@@ -4,20 +4,25 @@ localizeDocument();
 
 const params = new URLSearchParams(location.search);
 const storageId = params.get('storageId');
-const STORAGE_KEY = `vfs-toolkit-local-show-hidden-${storageId}`;
 
-const checkbox = document.getElementById('show-hidden');
+const OPTIONS = [
+  { id: 'show-hidden',     key: `vfs-toolkit-local-show-hidden-${storageId}` },
+  { id: 'follow-symlinks', key: `vfs-toolkit-local-follow-symlinks-${storageId}` },
+];
+
 const savedNotice = document.getElementById('saved-notice');
-
-// Load saved setting
-const rv = await browser.storage.local.get({ [STORAGE_KEY]: false });
-checkbox.checked = rv[STORAGE_KEY];
-
-// Save on change and briefly show confirmation
 let hideTimer;
-checkbox.addEventListener('change', async () => {
-  await browser.storage.local.set({ [STORAGE_KEY]: checkbox.checked });
-  savedNotice.classList.add('visible');
-  clearTimeout(hideTimer);
-  hideTimer = setTimeout(() => savedNotice.classList.remove('visible'), 1500);
-});
+
+const defaults = Object.fromEntries(OPTIONS.map(o => [o.key, false]));
+const stored = await browser.storage.local.get(defaults);
+
+for (const { id, key } of OPTIONS) {
+  const checkbox = document.getElementById(id);
+  checkbox.checked = stored[key];
+  checkbox.addEventListener('change', async () => {
+    await browser.storage.local.set({ [key]: checkbox.checked });
+    savedNotice.classList.add('visible');
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => savedNotice.classList.remove('visible'), 1500);
+  });
+}

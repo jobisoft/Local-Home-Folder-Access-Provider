@@ -68,13 +68,49 @@ def send_message(content):
 
 # ── Path helpers ───────────────────────────────────────────────────────────────
 
-def real_path(vfs_path):
-    """Resolve a VFS path to an absolute real path under ROOT."""
+def _is_legacy_junction(st):
+    """True for the deny-listed Windows compat junctions ('My Documents', etc.)."""
+    attrs = getattr(st, 'st_file_attributes', None)
+    return attrs is not None and (attrs & WIN_LEGACY_JUNCTION_MASK) == WIN_LEGACY_JUNCTION_MASK
+
+
+def _is_reparse_point(st):
+    """True for any symlink/junction (reparse point on Windows, S_ISLNK on POSIX)."""
+    attrs = getattr(st, 'st_file_attributes', None)
+    if attrs is not None:
+        return bool(attrs & stat.FILE_ATTRIBUTE_REPARSE_POINT)
+    return stat.S_ISLNK(st.st_mode)
+
+
+def real_path(vfs_path, follow_symlinks=False):
+    """Resolve a VFS path to an absolute real path under ROOT.
+
+    Textually rejects '..'-style escapes via os.path.normpath. Then walks each
+    path component under ROOT and rejects:
+      * legacy Windows compat junctions — always.
+      * any other reparse point (symlink / junction) — when follow_symlinks is False.
+    Components past the first FileNotFoundError are not checked, so creating a
+    new file/folder at a not-yet-existing leaf still works.
+    """
     rel = vfs_path.lstrip('/')
-    real = os.path.normpath(os.path.join(ROOT, rel)) if rel else ROOT
-    if not (real == ROOT or real.startswith(ROOT + os.sep)):
+    target = os.path.normpath(os.path.join(ROOT, rel)) if rel else ROOT
+    if not (target == ROOT or target.startswith(ROOT + os.sep)):
         raise PermissionError(f'Path escapes root: {vfs_path}')
-    return real
+
+    if target != ROOT:
+        current = ROOT
+        for comp in os.path.relpath(target, ROOT).split(os.sep):
+            current = os.path.join(current, comp)
+            try:
+                st = os.lstat(current)
+            except FileNotFoundError:
+                break  # not-yet-existing leaf — parents already validated
+            if _is_legacy_junction(st):
+                raise PermissionError(f'Legacy Windows junction not accessible: {vfs_path}')
+            if _is_reparse_point(st) and not follow_symlinks:
+                raise PermissionError(f'symlink support not enabled: {vfs_path}')
+
+    return target
 
 
 def guess_mime(path):
@@ -86,7 +122,8 @@ def guess_mime(path):
 def cmd_list(args):
     path = args.get('path', '/')
     show_hidden = args.get('showHidden', False)
-    real = real_path(path)
+    follow_symlinks = args.get('followSymlinks', False)
+    real = real_path(path, follow_symlinks)
     if not os.path.isdir(real):
         raise FileNotFoundError(f'Not a directory: {path}')
 
@@ -96,15 +133,14 @@ def cmd_list(args):
         prefix = path.rstrip('/')
         entry_path = f'{prefix}/{name}'
         try:
-            st = os.stat(full)
+            st = os.stat(full, follow_symlinks=False)
         except OSError:
             continue
 
-        attrs = getattr(st, 'st_file_attributes', None)  # None on non-Windows
-
-        if attrs is not None and (attrs & WIN_LEGACY_JUNCTION_MASK) == WIN_LEGACY_JUNCTION_MASK:
+        if _is_legacy_junction(st):
             continue
 
+        attrs = getattr(st, 'st_file_attributes', None)  # None on non-Windows
         if attrs is not None:
             is_hidden = bool(attrs & stat.FILE_ATTRIBUTE_HIDDEN)   # Windows
         else:
@@ -130,7 +166,8 @@ def cmd_list(args):
 def cmd_read_file(request_id, args):
     """Read a file; returns an iterator of (partial, result_dict) pairs."""
     path = args['path']
-    real = real_path(path)
+    follow_symlinks = args.get('followSymlinks', False)
+    real = real_path(path, follow_symlinks)
     if not os.path.isfile(real):
         raise FileNotFoundError(f'File not found: {path}')
     st = os.stat(real)
@@ -180,11 +217,12 @@ def cmd_write_file(args):
     overwrite = args.get('overwrite', False)
     upload_id = args.get('uploadId')
     more = args.get('more', False)
+    follow_symlinks = args.get('followSymlinks', False)
     content = base64.b64decode(args.get('content', ''))
 
     if upload_id is None:
         # Single-chunk write (file fits in one message)
-        real = real_path(path)
+        real = real_path(path, follow_symlinks)
         if not overwrite and os.path.exists(real):
             raise FileExistsError(f'File already exists: {path}')
         os.makedirs(os.path.dirname(real) or ROOT, exist_ok=True)
@@ -195,10 +233,13 @@ def cmd_write_file(args):
     # Multi-chunk write
     if upload_id not in _write_buffers:
         # First chunk: validate before allocating the buffer
-        real = real_path(path)
+        real = real_path(path, follow_symlinks)
         if not overwrite and os.path.exists(real):
             raise FileExistsError(f'File already exists: {path}')
-        _write_buffers[upload_id] = {'path': path, 'overwrite': overwrite, 'data': bytearray()}
+        _write_buffers[upload_id] = {
+            'path': path, 'overwrite': overwrite,
+            'followSymlinks': follow_symlinks, 'data': bytearray(),
+        }
 
     _write_buffers[upload_id]['data'].extend(content)
 
@@ -207,7 +248,7 @@ def cmd_write_file(args):
 
     # Last chunk — flush to disk
     buf = _write_buffers.pop(upload_id)
-    real = real_path(buf['path'])
+    real = real_path(buf['path'], buf['followSymlinks'])
     os.makedirs(os.path.dirname(real) or ROOT, exist_ok=True)
     with open(real, 'wb') as f:
         f.write(bytes(buf['data']))
@@ -216,7 +257,8 @@ def cmd_write_file(args):
 
 def cmd_add_folder(args):
     path = args['path']
-    real = real_path(path)
+    follow_symlinks = args.get('followSymlinks', False)
+    real = real_path(path, follow_symlinks)
     if os.path.exists(real):
         raise FileExistsError(f'Folder already exists: {path}')
     os.makedirs(real)
@@ -224,8 +266,9 @@ def cmd_add_folder(args):
 
 
 def cmd_move_file(args):
-    old_real = real_path(args['oldPath'])
-    new_real = real_path(args['newPath'])
+    follow_symlinks = args.get('followSymlinks', False)
+    old_real = real_path(args['oldPath'], follow_symlinks)
+    new_real = real_path(args['newPath'], follow_symlinks)
     overwrite = args.get('overwrite', False)
     if not overwrite and os.path.exists(new_real):
         raise FileExistsError(f'Target already exists: {args["newPath"]}')
@@ -235,8 +278,9 @@ def cmd_move_file(args):
 
 
 def cmd_move_folder(args):
-    old_real = real_path(args['oldPath'])
-    new_real = real_path(args['newPath'])
+    follow_symlinks = args.get('followSymlinks', False)
+    old_real = real_path(args['oldPath'], follow_symlinks)
+    new_real = real_path(args['newPath'], follow_symlinks)
     merge = args.get('merge', False)
     if not merge and os.path.exists(new_real):
         raise FileExistsError(f'Target already exists: {args["newPath"]}')
@@ -250,8 +294,9 @@ def cmd_move_folder(args):
 
 
 def cmd_copy_file(args):
-    old_real = real_path(args['oldPath'])
-    new_real = real_path(args['newPath'])
+    follow_symlinks = args.get('followSymlinks', False)
+    old_real = real_path(args['oldPath'], follow_symlinks)
+    new_real = real_path(args['newPath'], follow_symlinks)
     overwrite = args.get('overwrite', False)
     if not overwrite and os.path.exists(new_real):
         raise FileExistsError(f'Target already exists: {args["newPath"]}')
@@ -261,8 +306,9 @@ def cmd_copy_file(args):
 
 
 def cmd_copy_folder(args):
-    old_real = real_path(args['oldPath'])
-    new_real = real_path(args['newPath'])
+    follow_symlinks = args.get('followSymlinks', False)
+    old_real = real_path(args['oldPath'], follow_symlinks)
+    new_real = real_path(args['newPath'], follow_symlinks)
     merge = args.get('merge', False)
     if not merge and os.path.exists(new_real):
         raise FileExistsError(f'Target already exists: {args["newPath"]}')
@@ -275,7 +321,8 @@ def cmd_copy_folder(args):
 
 def cmd_delete_file(args):
     path = args['path']
-    real = real_path(path)
+    follow_symlinks = args.get('followSymlinks', False)
+    real = real_path(path, follow_symlinks)
     if not os.path.isfile(real):
         raise FileNotFoundError(f'File not found: {path}')
     os.remove(real)
@@ -284,7 +331,8 @@ def cmd_delete_file(args):
 
 def cmd_delete_folder(args):
     path = args['path']
-    real = real_path(path)
+    follow_symlinks = args.get('followSymlinks', False)
+    real = real_path(path, follow_symlinks)
     if not os.path.isdir(real):
         raise FileNotFoundError(f'Folder not found: {path}')
     shutil.rmtree(real)

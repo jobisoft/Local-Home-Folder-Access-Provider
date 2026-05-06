@@ -69,6 +69,12 @@
   "configShowHiddenDesc": {
     "message": "Include files and folders whose name starts with a dot (e.g. .bashrc)."
   },
+  "configFollowSymlinksTitle": {
+    "message": "Follow symbolic links"
+  },
+  "configFollowSymlinksDesc": {
+    "message": "Resolve symlinks and junctions inside your home folder. When enabled, files outside your home folder become reachable through any symlink you have placed there. Legacy Windows compatibility junctions are never followed."
+  },
   "configSaved": {
     "message": "Settings saved."
   },

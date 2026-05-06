@@ -69,6 +69,12 @@
   "configShowHiddenDesc": {
     "message": "Dateien und Ordner einbeziehen, deren Name mit einem Punkt beginnt (z. B. .bashrc)."
   },
+  "configFollowSymlinksTitle": {
+    "message": "Symbolischen Verknüpfungen folgen"
+  },
+  "configFollowSymlinksDesc": {
+    "message": "Symbolische Verknüpfungen und Junctions im Home-Ordner auflösen. Wenn aktiviert, werden Dateien außerhalb des Home-Ordners über jede dort platzierte Verknüpfung erreichbar. Alten Windows-Kompatibilitäts-Junctions wird niemals gefolgt."
+  },
   "configSaved": {
     "message": "Einstellungen gespeichert."
   },
