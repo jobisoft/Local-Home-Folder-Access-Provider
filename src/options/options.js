@@ -104,12 +104,12 @@ function helperBundleForOs(os) {
     'native-messaging-app/expose_home_folder_host.json',
   ];
   if (os === 'win') {
-    return { files: [...common, 'native-messaging-app/install.bat', 'native-messaging-app/uninstall.bat'], suffix: '_windows' };
+    return { files: [...common, 'native-messaging-app/install.bat', 'native-messaging-app/uninstall.bat'], suffix: '-windows' };
   }
   if (os === 'mac') {
-    return { files: [...common, 'native-messaging-app/install.sh', 'native-messaging-app/uninstall.sh'], suffix: '_mac' };
+    return { files: [...common, 'native-messaging-app/install.sh', 'native-messaging-app/uninstall.sh'], suffix: '-mac' };
   }
-  return { files: [...common, 'native-messaging-app/install.sh', 'native-messaging-app/uninstall.sh'], suffix: '_linux' };
+  return { files: [...common, 'native-messaging-app/install.sh', 'native-messaging-app/uninstall.sh'], suffix: '-linux' };
 }
 
 async function downloadNativeApp() {
