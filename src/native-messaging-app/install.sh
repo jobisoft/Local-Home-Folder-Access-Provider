@@ -42,17 +42,18 @@ echo
 
 read -p "Proceed with installation? [y/n] " -n 1 -r
 echo
+echo
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
   echo "Installation cancelled."
-  echo
   read -n1 -s -r -p "Press any key to exit..."
+  echo
   echo
   exit 1
 fi
 echo
 
 if [[ $PYTHON_PRESENT -eq 0 ]]; then
-  echo "Please ensure a working Python environment, otherwise the file system
+  echo "Please ensure a working Python environment, otherwise the file system"
   echo "access helper app will not work."
   echo
 fi
@@ -63,11 +64,12 @@ chmod +x "$PY_DEST"
 
 sed "s|/path/to/native-messaging-app/expose_home_folder_host.py|$PY_DEST|" "$MANIFEST_SRC" > "$MANIFEST_DEST"
 
-echo "Installed to:  $INSTALL_DIR"
-echo "Manifest at:   $MANIFEST_DEST"
+echo "Installed app to: $INSTALL_DIR"
+echo "Registered at:    $MANIFEST_DEST"
 echo
 echo "Restart Thunderbird to apply the changes."
 echo "The downloaded files can now be safely removed."
 echo
 read -n1 -s -r -p "Press any key to exit..."
+echo
 echo

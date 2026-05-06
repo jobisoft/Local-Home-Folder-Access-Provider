@@ -48,9 +48,9 @@ if exist "%INSTALL_DIR%" (
     endlocal
     exit /b 1
   )
-  echo Removed install dir: %INSTALL_DIR%
+  echo Removed app directory: %INSTALL_DIR%
 ) else (
-  echo Install dir already removed: %INSTALL_DIR%
+  echo App directory already removed: %INSTALL_DIR%
 )
 
 echo.

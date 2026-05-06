@@ -17,7 +17,7 @@ echo "This will uninstall the file system access helper app for the Thunderbird"
 echo "add-on \"VFS-Provider: Local Home Folder Access\"."
 echo
 echo "The following will happen:"
-echo "  - Remove the manifest:"
+echo "  - Remove the registration file:"
 echo "      $MANIFEST_DEST"
 echo "  - Remove the file system access helper app from:"
 echo "      $INSTALL_DIR"
@@ -25,29 +25,31 @@ echo
 
 read -p "Proceed with uninstallation? [y/n] " -n 1 -r
 echo
+echo
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
   echo "Uninstallation cancelled."
-  echo
   read -n1 -s -r -p "Press any key to exit..."
+  echo
   echo
   exit 1
 fi
-echo
 
 if [[ -f "$MANIFEST_DEST" ]]; then
   rm "$MANIFEST_DEST"
-  echo "Removed: $MANIFEST_DEST"
+  echo "Registration file removed:         $MANIFEST_DEST"
+
 else
-  echo "Not installed (not found): $MANIFEST_DEST"
+  echo "Registration file already removed: $MANIFEST_DEST"
 fi
 
 if [[ -d "$INSTALL_DIR" ]]; then
   rm -rf "$INSTALL_DIR"
-  echo "Removed install dir: $INSTALL_DIR"
+  echo "Removed app directory:             $INSTALL_DIR"
 else
-  echo "Not installed (not found): $INSTALL_DIR"
+  echo "App directory already removed:     $INSTALL_DIR"
 fi
 
 echo
 read -n1 -s -r -p "Press any key to exit..."
+echo
 echo
